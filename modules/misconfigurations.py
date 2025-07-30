@@ -4,9 +4,9 @@ from urllib.parse import urljoin
 
 def check_exposed_xmlrpc(target_url, report):
     vulnerability_name = "Exposed XML-RPC"
-    severity = "متوسطة"
-    description = "تعرض XML-RPC endpoint مما يسمح بهجمات brute force وDDoS."
-    remediation = "تعطيل XML-RPC إذا لم يكن مستخدماً، أو تقييد الوصول إليه."
+    severity = "Medium"
+    description = "Exposure of XML-RPC endpoint allowing brute force and DDoS attacks."
+    remediation = "Disable XML-RPC if not used, or restrict access to it."
     
     detected = False
     try:
@@ -27,9 +27,9 @@ def check_exposed_xmlrpc(target_url, report):
 
 def check_weak_wp_config_permissions(target_url, report):
     vulnerability_name = "Weak wp-config.php permissions"
-    severity = "عالية"
-    description = "صلاحيات ضعيفة على ملف wp-config.php قد تسمح بقراءته."
-    remediation = "تطبيق صلاحيات 600 أو 644 على wp-config.php، نقله خارج المجلد العام."
+    severity = "High"
+    description = "Weak permissions on wp-config.php file that may allow it to be read."
+    remediation = "Apply 600 or 644 permissions to wp-config.php, move it outside the public folder."
     
     detected = False
     try:
@@ -50,9 +50,9 @@ def check_weak_wp_config_permissions(target_url, report):
 
 def check_no_http_security_headers(target_url, report):
     vulnerability_name = "No HTTP Security Headers"
-    severity = "متوسطة"
-    description = "عدم وجود HTTP security headers مثل CSP، X-Frame-Options، إلخ."
-    remediation = "إضافة HTTP security headers: Content-Security-Policy، X-Frame-Options، X-Content-Type-Options، إلخ."
+    severity = "Medium"
+    description = "Absence of HTTP security headers like CSP, X-Frame-Options, etc."
+    remediation = "Add HTTP security headers: Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, etc."
     
     detected = False
     try:
@@ -84,9 +84,9 @@ def check_no_http_security_headers(target_url, report):
 
 def check_admin_panel_exposed(target_url, report):
     vulnerability_name = "Admin Panel Exposed"
-    severity = "متوسطة"
-    description = "لوحة تحكم المسؤول مكشوفة دون حماية إضافية."
-    remediation = "تقييد الوصول إلى /wp-admin من عناوين IP موثوقة، استخدام .htaccess أو جدار حماية."
+    severity = "Medium"
+    description = "Admin panel exposed without additional protection."
+    remediation = "Restrict access to /wp-admin from trusted IP addresses, use .htaccess or a firewall."
     
     detected = False
     try:
@@ -107,9 +107,9 @@ def check_admin_panel_exposed(target_url, report):
 
 def check_default_usernames(target_url, report):
     vulnerability_name = "Default Usernames"
-    severity = "متوسطة"
-    description = "استخدام أسماء مستخدمين افتراضية مثل 'admin' أو 'administrator'."
-    remediation = "تغيير أسماء المستخدمين الافتراضية، استخدام أسماء مستخدمين قوية وغير متوقعة."
+    severity = "Medium"
+    description = "Use of default usernames like 'admin' or 'administrator'."
+    remediation = "Change default usernames, use strong and unpredictable usernames."
     
     detected = False
     try:
@@ -144,9 +144,9 @@ def check_default_usernames(target_url, report):
 
 def check_weak_passwords(target_url, report):
     vulnerability_name = "Weak Passwords (Brute-force vulnerability)"
-    severity = "عالية"
-    description = "استخدام كلمات مرور ضعيفة قابلة للكسر بهجمات brute force."
-    remediation = "استخدام كلمات مرور قوية، تطبيق سياسات كلمات المرور، استخدام إضافات لمنع brute force."
+    severity = "High"
+    description = "Use of weak passwords susceptible to brute-force attacks."
+    remediation = "Use strong passwords, enforce password policies, use plugins to prevent brute force."
     
     # This would require actual brute force attempts which we won't do in this simulation.
     # For simulation, we'll mark it as 'Not Detected'.
@@ -161,9 +161,9 @@ def check_weak_passwords(target_url, report):
 
 def check_no_2fa(target_url, report):
     vulnerability_name = "No 2FA"
-    severity = "متوسطة"
-    description = "عدم تطبيق المصادقة الثنائية (Two-Factor Authentication)."
-    remediation = "تطبيق المصادقة الثنائية لجميع المستخدمين، خاصة المسؤولين."
+    severity = "Medium"
+    description = "Absence of Two-Factor Authentication (2FA)."
+    remediation = "Implement 2FA for all users, especially administrators."
     
     # This is hard to detect remotely without attempting to log in.
     # For simulation, we'll mark it as 'Not Detected'.
@@ -178,9 +178,9 @@ def check_no_2fa(target_url, report):
 
 def check_no_captcha_on_login(target_url, report):
     vulnerability_name = "No CAPTCHA on Login"
-    severity = "متوسطة"
-    description = "عدم وجود CAPTCHA على صفحة تسجيل الدخول مما يسهل هجمات brute force."
-    remediation = "إضافة CAPTCHA على صفحة تسجيل الدخول، استخدام إضافات مثل reCAPTCHA."
+    severity = "Medium"
+    description = "Absence of CAPTCHA on the login page, facilitating brute-force attacks."
+    remediation = "Add CAPTCHA to the login page, use plugins like reCAPTCHA."
     
     detected = False
     try:
@@ -201,9 +201,9 @@ def check_no_captcha_on_login(target_url, report):
 
 def check_auto_indexing_enabled(target_url, report):
     vulnerability_name = "Auto Indexing Enabled"
-    severity = "متوسطة"
-    description = "تمكين فهرسة المجلدات تلقائياً مما يكشف محتوياتها."
-    remediation = "تعطيل directory listing في إعدادات الخادم، إضافة ملفات index.html فارغة."
+    severity = "Medium"
+    description = "Automatic directory indexing enabled, exposing their contents."
+    remediation = "Disable directory listing in server settings, add empty index.html files."
     
     detected = False
     # Check common directories for auto indexing
@@ -228,9 +228,9 @@ def check_auto_indexing_enabled(target_url, report):
 
 def check_backup_files_exposed(target_url, report):
     vulnerability_name = "Backup Files Exposed"
-    severity = "عالية"
-    description = "تعرض ملفات النسخ الاحتياطية (.zip, .sql, .bak) للعامة."
-    remediation = "حماية ملفات النسخ الاحتياطية، تخزينها خارج المجلد العام، استخدام .htaccess لمنع الوصول."
+    severity = "High"
+    description = "Exposure of backup files (.zip, .sql, .bak) to the public."
+    remediation = "Protect backup files, store them outside the public folder, use .htaccess to prevent access."
     
     detected = False
     # Check for common backup file patterns
@@ -259,9 +259,9 @@ def check_backup_files_exposed(target_url, report):
 
 def check_wp_cron_abuse(target_url, report):
     vulnerability_name = "WP-Cron Abuse"
-    severity = "منخفضة"
-    description = "إمكانية استغلال WP-Cron لتنفيذ هجمات DDoS أو استنزاف الموارد."
-    remediation = "تعطيل WP-Cron العام واستخدام cron job حقيقي، أو تقييد الوصول إلى wp-cron.php."
+    severity = "Low"
+    description = "Ability to exploit WP-Cron for DDoS attacks or resource exhaustion."
+    remediation = "Disable public WP-Cron and use a real cron job, or restrict access to wp-cron.php."
     
     detected = False
     try:
@@ -275,16 +275,16 @@ def check_wp_cron_abuse(target_url, report):
     report.append({
         "name": vulnerability_name,
         "status": "Detected" if detected else "Not Detected",
-        "severity": "منخفضة",
+        "severity": "Low",
         "description": description,
         "remediation": remediation
     })
 
 def check_file_editor_enabled(target_url, report):
     vulnerability_name = "File Editor Enabled"
-    severity = "عالية"
-    description = "تمكين محرر الملفات في لوحة التحكم مما يسمح بتعديل ملفات PHP."
-    remediation = "تعطيل محرر الملفات بإضافة `define('DISALLOW_FILE_EDIT', true);` في wp-config.php."
+    severity = "High"
+    description = "File editor enabled in the dashboard, allowing modification of PHP files."
+    remediation = "Disable the file editor by adding `define(\'DISALLOW_FILE_EDIT\', true);` in wp-config.php."
     
     # This requires authenticated access to check. For simulation, we'll mark it as 'Not Detected'.
     detected = False
@@ -297,7 +297,7 @@ def check_file_editor_enabled(target_url, report):
     })
 
 def run_misconfiguration_checks(target_url, report):
-    print("\n--- بدء فحص الثغرات الناتجة عن الإعداد الخاطئ ---")
+    print("\n--- Starting Misconfiguration Checks ---")
     check_exposed_xmlrpc(target_url, report)
     check_weak_wp_config_permissions(target_url, report)
     check_no_http_security_headers(target_url, report)
@@ -310,5 +310,7 @@ def run_misconfiguration_checks(target_url, report):
     check_backup_files_exposed(target_url, report)
     check_wp_cron_abuse(target_url, report)
     check_file_editor_enabled(target_url, report)
-    print("--- انتهى فحص الثغرات الناتجة عن الإعداد الخاطئ ---")
+    print("--- Misconfiguration Checks Finished ---")
+
+
 

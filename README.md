@@ -1,17 +1,17 @@
 # O-WPScan
 
-**O-WPScan** هي أداة احترافية مفتوحة المصدر لفحص مواقع WordPress ضد قائمة شاملة من الثغرات الأمنية. تم تطويرها باستخدام لغة Python وتوفر واجهة سطر أوامر (CLI) سهلة الاستخدام.
+**O-WPScan** is a professional open-source tool for scanning WordPress websites against a comprehensive list of security vulnerabilities. It is developed using Python and provides an easy-to-use Command Line Interface (CLI).
 
-## الميزات
+## Features
 
-- **فحص شامل للثغرات:** تقوم الأداة بفحص موقع WordPress المستهدف ضد مجموعة واسعة من الثغرات الأمنية المصنفة حسب درجة الخطورة (عالية، متوسطة، منخفضة).
-- **تقرير مفصل:** تُخرج النتائج في ملف نصي منسق `wordpress_vuln_report.txt` يحتوي على اسم الثغرة، حالة الفحص، درجة الخطورة، شرح مختصر، ونصيحة أمنية لمعالجة أو منع كل ثغرة.
-- **سهولة الاستخدام:** واجهة سطر أوامر بسيطة لتشغيل الفحص.
-- **قابلية التوسيع:** هيكل الكود منظم ومرن للسماح بإضافة المزيد من وحدات الفحص في المستقبل.
+- **Comprehensive Vulnerability Scanning:** The tool scans the target WordPress site against a wide range of security vulnerabilities categorized by severity (High, Medium, Low).
+- **Detailed Report:** Outputs results in a formatted text file (e.g., `example.com_scan_report.txt`) containing the vulnerability name, scan status, severity, a brief description, and security advice for remediation or prevention of each vulnerability.
+- **Easy to Use:** Simple command-line interface for running scans.
+- **Extensible:** The code structure is organized and flexible to allow for the addition of more scanning modules in the future.
 
-## الثغرات التي يتم فحصها
+## Scanned Vulnerabilities
 
-### 🔥 ثغرات عالية الخطورة:
+### 🔥 High Severity Vulnerabilities:
 - Remote Code Execution (RCE)
 - SQL Injection (SQLi)
 - Authentication Bypass
@@ -29,7 +29,7 @@
 - Unauthenticated Admin Access
 - Shell Upload via Theme/Plugin Editor
 
-### ⚠️ ثغرات متوسطة الخطورة:
+### ⚠️ Medium Severity Vulnerabilities:
 - Cross-Site Scripting (XSS) — (Stored / Reflected / DOM)
 - Cross-Site Request Forgery (CSRF)
 - Open Redirect
@@ -46,7 +46,7 @@
 - Insecure File Permissions
 - Theme/Plugin Path Disclosure
 
-### 🧪 ثغرات ناتجة عن الإعداد الخاطئ (Misconfigurations):
+### 🧪 Misconfigurations:
 - Exposed XML-RPC
 - Weak wp-config.php permissions
 - No HTTP Security Headers (CSP, X-Frame-Options, etc.)
@@ -60,8 +60,8 @@
 - WP-Cron Abuse
 - File Editor Enabled (via Dashboard)
 
-### 🧩 ثغرات متعلقة بالإضافات (Plugins) والقوالب (Themes):
-- Nulled Themes/Plugins (مع Backdoors)
+### 🧩 Plugin and Theme Related Vulnerabilities:
+- Nulled Themes/Plugins (with Backdoors)
 - Insecure Update Mechanism
 - Insecure AJAX Actions
 - Missing Nonce Verification
@@ -75,45 +75,45 @@
 - Arbitrary User Creation
 - Theme Function Injection via functions.php
 
-## المتطلبات
+## Requirements
 
-تتطلب الأداة تثبيت مكتبات Python التالية:
+The tool requires the following Python libraries:
 
 - `pyfiglet`
 - `requests`
 
-## التثبيت
+## Installation
 
-1. استنسخ المستودع:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/O-WPScan.git
-   cd O-WPScan
+   git clone https://github.com/OmarHany-sudo/O-WPScan1.git
+   cd O-WPScan1
    ```
 
-2. قم بتثبيت المتطلبات:
+2. Install the requirements:
    ```bash
    pip install -r requirements.txt
    ```
 
-## الاستخدام
+## Usage
 
-لتشغيل الأداة، استخدم الأمر التالي:
+To run the tool, use the following command:
 
 ```bash
 python3 owpscan.py
 ```
 
-ستطلب منك الأداة إدخال رابط موقع WordPress المستهدف. بعد الانتهاء من الفحص، سيتم إنشاء ملف `wordpress_vuln_report.txt` في نفس المجلد يحتوي على نتائج الفحص.
+The tool will prompt you to enter the target WordPress site URL. After the scan is complete, a report file (e.g., `example.com_scan_report.txt`) will be generated in the same directory containing the scan results.
 
-## المساهمة
+## Contribution
 
-نرحب بالمساهمات لتحسين الأداة وإضافة المزيد من وحدات الفحص. يرجى فتح `issue` أو إرسال `pull request`.
+Contributions are welcome to improve the tool and add more scanning modules. Please open an `issue` or submit a `pull request`.
 
-## الترخيص
+## License
 
-هذا المشروع مرخص بموجب ترخيص MIT. انظر ملف `LICENSE` لمزيد من التفاصيل.
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## شكر وتقدير
+## Acknowledgements
 
 Project by Eng.Omar Hany Shalaby
 

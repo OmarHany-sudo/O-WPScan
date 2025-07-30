@@ -4,7 +4,7 @@ import re
 import os
 import socket
 import subprocess
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 from modules.high_severity import run_high_severity_checks
 from modules.medium_severity import run_medium_severity_checks
@@ -16,25 +16,31 @@ def display_banner():
     print(ascii_banner)
     print("Project by Eng.Omar Hany Shalaby\n")
 
-def generate_report(report_data):
-    with open("wordpress_vuln_report.txt", "w", encoding="utf-8") as f:
-        f.write("تقرير فحص ثغرات WordPress\n")
-        f.write("=====================================\n\n")
+def generate_report(report_data, target_url):
+    parsed_url = urlparse(target_url)
+    hostname = parsed_url.netloc.replace(".", "_").replace(":", "_")
+    report_filename = f"{hostname}_scan_report.txt"
+    report_path = os.path.join(os.getcwd(), report_filename)
+
+    with open(report_path, "w", encoding="utf-8") as f:
+        f.write(f"WordPress Vulnerability Scan Report for: {target_url}\n")
+        f.write("===================================================\n\n")
         for entry in report_data:
-            f.write(f"اسم الثغرة: {entry['name']}\n")
-            f.write(f"حالة الفحص: {entry['status']}\n")
-            f.write(f"درجة الخطورة: {entry['severity']}\n")
-            f.write(f"شرح مختصر: {entry['description']}\n")
-            f.write(f"نصيحة أمنية: {entry['remediation']}\n")
-            f.write("-------------------------------------\n\n")
+            f.write(f"Vulnerability Name: {entry['name']}\n")
+            f.write(f"Scan Status: {entry['status']}\n")
+            f.write(f"Severity: {entry['severity']}\n")
+            f.write(f"Description: {entry['description']}\n")
+            f.write(f"Remediation: {entry['remediation']}\n")
+            f.write("---------------------------------------------------\n\n")
+    return report_path
 
 def main():
     display_banner()
-    target_url = input("أدخل رابط موقع WordPress المستهدف (مثال: https://example.com): ")
-    if not target_url.startswith(('http://', 'https://')):
-        target_url = 'http://' + target_url
+    target_url = input("Enter the target WordPress site URL (e.g., https://example.com): ")
+    if not target_url.startswith(("http://", "https://")):
+        target_url = "http://" + target_url
     
-    print(f"\nبدء فحص الثغرات لموقع: {target_url}\n")
+    print(f"\nStarting vulnerability scan for: {target_url}\n")
     
     report_data = []
     
@@ -43,11 +49,10 @@ def main():
     run_misconfiguration_checks(target_url, report_data)
     run_plugin_theme_checks(target_url, report_data)
     
-    generate_report(report_data)
+    generated_report_path = generate_report(report_data, target_url)
     
-    print("\nانتهى الفحص. تم حفظ التقرير في wordpress_vuln_report.txt")
+    print(f"\nScan finished. The report has been saved to: {os.path.abspath(generated_report_path)}")
 
 if __name__ == "__main__":
     main()
-
 
