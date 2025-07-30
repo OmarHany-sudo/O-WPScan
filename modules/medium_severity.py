@@ -91,7 +91,7 @@ def check_information_disclosure(target_url, report):
     # Check for version disclosure in HTML source
     try:
         response = requests.get(target_url, timeout=5)
-        if re.search(r\'wp-includes/version\\.php\', response.text) or re.search(r\'content="WordPress \\d+\\.\\d+\', response.text):
+        if re.search(r'wp-includes/version\.php', response.text) or re.search(r'content="WordPress \d+\.\d+', response.text):
             detected = True
     except requests.exceptions.RequestException:
         pass
