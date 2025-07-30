@@ -86,8 +86,8 @@ The tool requires the following Python libraries:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/OmarHany-sudo/O-WPScan1.git
-   cd O-WPScan1
+   git clone https://github.com/OmarHany-sudo/O-WPScan.git
+   cd O-WPScan
    ```
 
 2. Install the requirements:
