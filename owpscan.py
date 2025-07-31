@@ -22,6 +22,15 @@ def display_banner():
     print(ascii_banner)
     print("Project by Eng.Omar Hany Shalaby\n")
 
+def display_help():
+    print("Usage: python3 owpscan.py <target_url> <export_format>")
+    print("       python3 owpscan.py --help")
+    print("\nArguments:")
+    print("  <target_url>    The URL of the WordPress site to scan (e.g., https://example.com).")
+    print("  <export_format> The desired report format (e.g., txt, md, html, pdf).")
+    print("\nOptions:")
+    print("  --help          Show this help message and exit.")
+
 def generate_report(report_data, target_url, export_format="txt"):
     parsed_url = urlparse(target_url)
     hostname = parsed_url.netloc.replace(".", "_").replace(":", "_")
@@ -97,8 +106,12 @@ def generate_report(report_data, target_url, export_format="txt"):
 
 def main():
     display_banner()
-    if len(sys.argv) < 3:
-        print("Usage: python3 owpscan.py <target_url> <export_format>")
+    if len(sys.argv) == 2 and sys.argv[1] == "--help":
+        display_help()
+        sys.exit(0)
+    elif len(sys.argv) < 3:
+        print("Error: Missing arguments.")
+        display_help()
         sys.exit(1)
 
     target_url = sys.argv[1]

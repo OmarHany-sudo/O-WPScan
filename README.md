@@ -6,6 +6,8 @@
 
 - **Comprehensive Vulnerability Scanning:** The tool scans the target WordPress site against a wide range of security vulnerabilities categorized by severity (High, Medium, Low).
 - **Detailed Report:** Outputs results in a formatted text file (e.g., `example.com_scan_report.txt`) containing the vulnerability name, scan status, severity, a brief description, and security advice for remediation or prevention of each vulnerability.
+- **Enhanced Reporting:** Includes a summary of vulnerabilities by severity, uses clear symbols (❌ for discovered, ✅ for non-existent), and adds scan metadata (website link, date/time, tool version) and a signature.
+- **Multiple Export Formats:** Reports can be saved as plain text (.txt), Markdown (.md), HTML (.html), or PDF (.pdf).
 - **Easy to Use:** Simple command-line interface for running scans.
 - **Extensible:** The code structure is organized and flexible to allow for the addition of more scanning modules in the future.
 
@@ -81,6 +83,8 @@ The tool requires the following Python libraries:
 
 - `pyfiglet`
 - `requests`
+- `markdown`
+- `weasyprint`
 
 ## Installation
 
@@ -93,6 +97,7 @@ The tool requires the following Python libraries:
 2. Install the requirements:
    ```bash
    pip install -r requirements.txt
+   pip install markdown weasyprint
    ```
 
 ## Usage
@@ -100,10 +105,23 @@ The tool requires the following Python libraries:
 To run the tool, use the following command:
 
 ```bash
-python3 owpscan.py
+python3 owpscan.py <target_url> <export_format>
 ```
 
-The tool will prompt you to enter the target WordPress site URL. After the scan is complete, a report file (e.g., `example.com_scan_report.txt`) will be generated in the same directory containing the scan results.
+- `<target_url>`: The URL of the WordPress site to scan (e.g., `https://example.com`).
+- `<export_format>`: The desired report format (e.g., `txt`, `md`, `html`, `pdf`).
+
+Example:
+```bash
+python3 owpscan.py https://example.com pdf
+```
+
+To display help information:
+```bash
+python3 owpscan.py --help
+```
+
+After the scan is complete, a report file (e.g., `example.com_scan_report.pdf`) will be generated in the same directory containing the scan results.
 
 ## Contribution
 
