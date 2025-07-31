@@ -36,9 +36,9 @@ def generate_report(report_data, target_url, export_format="txt"):
     hostname = parsed_url.netloc.replace(".", "_").replace(":", "_")
     
     # Calculate vulnerability summary
-    high_count = sum(1 for entry in report_data if entry["severity"] == "High" and entry["status"] == "Discovered")
-    medium_count = sum(1 for entry in report_data if entry["severity"] == "Medium" and entry["status"] == "Discovered")
-    low_count = sum(1 for entry in report_data if entry["severity"] == "Low" and entry["status"] == "Discovered")
+    high_count = sum(1 for entry in report_data if entry["severity"] == "High" and entry["status"] == "Detected")
+    medium_count = sum(1 for entry in report_data if entry["severity"] == "Medium" and entry["status"] == "Detected")
+    low_count = sum(1 for entry in report_data if entry["severity"] == "Low" and entry["status"] == "Detected")
 
     scan_date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -58,7 +58,7 @@ def generate_report(report_data, target_url, export_format="txt"):
     report_content.append(f"\n")
 
     for entry in report_data:
-        status_symbol = '❌' if entry['status'] == 'Discovered' else '✅'
+        status_symbol = '❌' if entry['status'] == 'Detected' else '✅'
         report_content.append(f"### Vulnerability Name: {entry['name']}\n")
         report_content.append(f"- Scan Status: {status_symbol} {entry['status']}\n")
         report_content.append(f"- Severity: {entry['severity']}\n")

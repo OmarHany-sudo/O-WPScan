@@ -1,14 +1,14 @@
 # WordPress Vulnerability Scan Report
 ===================================================
 Scanned Website: https://example.com
-Scan Date and Time: 2025-07-31 08:45:44
+Scan Date and Time: 2025-07-31 09:40:52
 Tool Version: 1.0.0
 ===================================================
 
 ## Vulnerability Summary
 -----------------------
 High Severity: 0
-Medium Severity: 0
+Medium Severity: 2
 Low Severity: 0
 
 ### Vulnerability Name: Remote Code Execution (RCE)
@@ -166,7 +166,7 @@ Low Severity: 0
 ---------------------------------------------------
 
 ### Vulnerability Name: Clickjacking
-- Scan Status: ✅ Detected
+- Scan Status: ❌ Detected
 - Severity: Medium
 - Description: Ability to trick users into clicking on hidden or misleading elements.
 - Remediation: Use X-Frame-Options header or Content Security Policy (CSP) frame-ancestors directive.
@@ -243,7 +243,7 @@ Low Severity: 0
 ---------------------------------------------------
 
 ### Vulnerability Name: No HTTP Security Headers
-- Scan Status: ✅ Detected
+- Scan Status: ❌ Detected
 - Severity: Medium
 - Description: Absence of HTTP security headers like CSP, X-Frame-Options, etc.
 - Remediation: Add HTTP security headers: Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, etc.
